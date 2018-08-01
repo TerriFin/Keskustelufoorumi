@@ -1,3 +1,3 @@
 Hello, this is a test.
 
-![image](https://user-images.githubusercontent.com/32302869/43493436-abbd7430-9536-11e8-8d47-1d3bc8b4f9e2.png)
+![image](https://user-images.githubusercontent.com/32302869/43494969-2b925138-953e-11e8-9e5b-6385898ae86f.png)
