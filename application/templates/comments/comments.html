@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h1>{{ PostName }}</h1>
+
+<h2>Comments:</h2>
+<ol>
+{% for comment in Comments %}
+    <li>{{comment.CommentContent}}</li>
+{% endfor %}
+</ol>
+
+<form method="POST" action="{{ url_for('create_comment', PostId=PostID) }}">
+    <input type="text" name="newComment"/>
+    <input type="submit" value="Make this comment"/>
+</form>
+
+<a href="{{ url_for('posts_index') }}">Return</a>
+{% endblock %}

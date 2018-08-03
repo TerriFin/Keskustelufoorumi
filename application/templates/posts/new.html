@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('posts_create') }}">
+    <input type="text" name="postName"/>
+    <input type="submit" value="Make this post"/>
+</form>
+
+<a href="{{ url_for('posts_index') }}">Return</a>
+{% endblock %}

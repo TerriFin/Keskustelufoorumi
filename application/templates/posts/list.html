@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h1>Posts by users</h1>
+
+<ol>
+    {% for post in posts %}
+    <li><a href="{{ url_for('show_comments', PostId=post.PostId) }}">{{ post.PostName }}</a></li>
+    {% endfor %}
+</ol>
+
+<a href="{{ url_for('posts_form') }}">Make a new post</a>
+{% endblock %}
