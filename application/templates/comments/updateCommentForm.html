@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{ url_for('update_comment', PostId=PostId) }}">
+     <input type="hidden" value="{{ CommentId }}" name="comment_to_update"/>
+     <input type="text" value="{{ CommentContent }}" name="updated_comment_content"/>
+     <input type="submit" value="Submit change">
+</form>
+
+<a href="{{ url_for('show_comments', PostId=PostId) }}">Return</a>
+{% endblock %}

@@ -19,3 +19,27 @@ def create_comment(PostId):
     db.session().commit()
 
     return redirect(url_for("show_comments", PostId=PostId))
+
+@app.route("/commentsdelete/<PostId>/", methods=["POST"])
+def delete_comment(PostId):
+    comment = Comment.query.get(request.form.get("comment_to_delete"))
+
+    db.session().delete(comment)
+    db.session().commit()
+
+    return redirect(url_for("show_comments", PostId=PostId))
+
+@app.route("/commentsupdate/<PostId>/", methods=["POST"])
+def show_comment_update_form(PostId):
+    comment = Comment.query.get(request.form.get("comment_to_update"))
+
+    return render_template("comments/updateCommentForm.html", PostId=PostId, CommentId=comment.CommentId, CommentContent=comment.CommentContent)
+
+@app.route("/commentsupdatenow/<PostId>/", methods=["POST"])
+def update_comment(PostId):
+    comment = Comment.query.get(request.form.get("comment_to_update"))
+
+    comment.CommentContent = request.form.get("updated_comment_content")
+    db.session().commit()
+
+    return redirect(url_for("show_comments", PostId=PostId))
