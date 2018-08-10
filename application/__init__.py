@@ -4,7 +4,13 @@ app = Flask(__name__)
 
 # Set up sqlalchemy database
 from flask_sqlalchemy import SQLAlchemy
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///userPosts.db"
+import os
+
+if os.environ.get("HEROKU"):
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
+else:
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///userPosts.db"
+
 db = SQLAlchemy(app)
 
 # Import all the different models and initiate them as database if needed
