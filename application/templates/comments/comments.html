@@ -22,7 +22,14 @@
 </ol>
 
 <form method="POST" action="{{ url_for('create_comment', PostId=PostID) }}">
-    <input type="text" name="newComment"/>
+    {% for error in form.comment.errors %}
+    {{ error }}
+    <br>
+    {% endfor %}
+    <br>
+    {{ form.comment.label }}
+    <br>
+    {{ form.comment }}
     <input type="submit" value="Make this comment"/>
 </form>
 

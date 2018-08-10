@@ -1,9 +1,18 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<h2>Update comment</h2>
+
+{% for error in form.comment.errors %}
+{{ error }}
+<br>
+{% endfor %}
+
 <form method="POST" action="{{ url_for('update_comment', PostId=PostId) }}">
      <input type="hidden" value="{{ CommentId }}" name="comment_to_update"/>
-     <input type="text" value="{{ CommentContent }}" name="updated_comment_content"/>
+     {{ form.comment.label }}
+     <br>
+     {{ form.comment }}
      <input type="submit" value="Submit change">
 </form>
 

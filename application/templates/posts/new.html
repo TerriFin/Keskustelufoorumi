@@ -2,7 +2,16 @@
 
 {% block body %}
 <form method="POST" action="{{ url_for('posts_create') }}">
-    <input type="text" name="postName"/>
+    {{ form.name.label }} 
+    <br>
+    {{ form.name }}
+    <br>
+
+    {% for error in form.name.errors %}
+    {{ error }}
+    <br>
+    {% endfor %}
+    
     <input type="submit" value="Make this post"/>
 </form>
 

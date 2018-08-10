@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+<br>
+
+{{ error }}
+
+<form method="POST", action="{{ url_for('auth_register_new_user') }}">
+    {% for error in form.username.errors %}
+    {{ error }}
+    <br>
+    {% endfor %}
+
+    {% for error in form.password.errors %}
+    {{ error }}
+    <br>
+    {% endfor %}
+
+    {{ form.username.label }}
+    {{ form.username }}
+
+    <br>
+
+    {{ form.password.label }}
+    {{ form.password }}
+
+    <br>
+
+    <input type="submit" value="Register"/>
+</form>
+
+<a href="{{ url_for('index') }}">Back </a>
+{% endblock %}
