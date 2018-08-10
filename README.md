@@ -1,6 +1,15 @@
 # Keskustelufoorumi
 
-Tässä projektissa teen yksinkertaisen foorumin johon käyttäjät pystyvät luoda ja jatkaa viestiketjuja. Yritän lisätä kaikki tämän valmiin aiheen toiminnallisuudet, (Kirjautuminen, kirjoitusten lisääminen, kirjoitusten näyttäminen eri kriteerein, ryhmän jäsenen lisääminen, muokkaaminen ja poistaminen, vastineen laatiminen ja muokkaus, kirjoitusten poistaminen, aiheiden määrittely, muokkaus ja poisto) mutta saatan myös joutua jättämään joitain ominaisuuksia pois, niinkuin järjestelmän ylläpitäjän (adminin). 
+Tässä projektissa teen yksinkertaisen foorumin johon käyttäjät pystyvät luoda ja jatkaa viestiketjuja.
+Lopullisessa versiossa ainoastaan käyttäjät jotka ovat tehneet postauksen/kommentin pystyvät muokata/poistaa kyseisen julkaisun, ja lopullisessa versiossa tulee myös olemaan jonkinsorttinen "hall of fame", josta löytyvät ne käyttäjät jotka ovat tehneet parhaat postaukset.
+
+Joitakin valmiita käyttäjiä joita löytyy foorumilta;
+
+username: test 
+password: test
+
+username: hello
+password: world
 
 **[Tietokannoista](https://github.com/TerriFin/Keskustelufoorumi/blob/master/documentation/Tietokannoista.md)**
 
