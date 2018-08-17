@@ -16,3 +16,10 @@ password: world
 **[Käyttötapauksia](https://github.com/TerriFin/Keskustelufoorumi/blob/master/documentation/kayttotapaukset.md)**
 
 **Linkki herokuun: https://bestforumever.herokuapp.com**
+
+Tällä hetkellä hall of fame ei toimi herokussa, koska postgres vaatii erilaista kyselyä kuin sqlite3. Minun pitää keksiä tapa millä herokussa
+applikaatio käyttää seuraavaa kyselyä tämänhetkisen kyselyn sijasta:
+
+SELECT Post."postName", Post."accountId", COUNT(Comment.id) FROM Post LEFT JOIN Comment ON Post.id = comment."postId" GROUP BY Post."postName", Post."accountId" ORDER BY Count(Comment.id) DESC LIMIT 1;
+
+Tuskin kerkiän tehdä sitä ennen seuraavaa deadlineä, joten laitan tmän nyt tähän armon toivossa.
