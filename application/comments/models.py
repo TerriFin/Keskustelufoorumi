@@ -1,14 +1,12 @@
 from application import db
+from application.models import Base
 
-class Comment(db.Model):
-    CommentId = db.Column(db.Integer, primary_key = True)
-    CommentDate = db.Column(db.DateTime, default = db.func.current_timestamp())
-    ModifyDate = db.Column(db.DateTime, default = db.func.current_timestamp(),
-    onupdate = db.func.current_timestamp())
+class Comment(Base):
 
-    CommentContent = db.Column(db.String(500), nullable = False)
+    commentContent = db.Column(db.String(500), nullable = False)
 
-    PostId = db.Column(db.Integer, db.ForeignKey('post.PostId'), nullable=False)
+    postId = db.Column(db.Integer, db.ForeignKey('post.id'), nullable=False)
+    accountId = db.Column(db.Integer, db.ForeignKey('account.id'), nullable=False)
 
-    def __init__(self, commentContent):
-        self.CommentContent = commentContent
+    def __init__(self, content):
+        self.commentContent = content

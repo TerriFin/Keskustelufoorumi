@@ -1,16 +1,15 @@
 from application import db
+from application.models import Base
 
-class User(db.Model):
+class User(Base):
 
     __tablename__ = "account"
 
-    id = db.Column(db.Integer, primary_key = True)
-    date_created = db.Column(db.DateTime, default = db.func.current_timestamp())
-    date_modified = db.Column(db.DateTime, default = db.func.current_timestamp(),
-    onupdate=db.func.current_timestamp())
-
     username = db.Column(db.String(150), nullable = False)
     password = db.Column(db.String(150), nullable = False)
+
+    posts = db.relationship("Post", backref='account')
+    comments = db.relationship("Comment", backref='account')
 
     def __init__(self, username, password):
         self.username = username

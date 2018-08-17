@@ -2,7 +2,7 @@ from application import app, db
 from flask import render_template, request, url_for, redirect
 from application.posts.models import Post
 from application.posts.forms import PostForm
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 @app.route("/posts/new/", methods=["GET"])
 @login_required
@@ -18,6 +18,7 @@ def posts_create():
         return render_template("posts/new.html", form = form)
 
     post = Post(form.name.data)
+    post.accountId = current_user.id
 
     db.session().add(post)
     db.session().commit()

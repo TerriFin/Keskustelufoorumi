@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<br>
+
+<h1>Post with the most comments;</h1>
+
+{{ bestPost }}
+
+<br>
+
+Posted by: {{ bestPostPoster }}
+
+<br>
+
+Number of comments: {{ numberOfComments }}
+
+<br>
+<br>
+
+<a href="{{ url_for('index') }}">Back to index</a>
+{% endblock %}

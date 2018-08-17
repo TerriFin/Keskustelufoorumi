@@ -5,9 +5,17 @@
 
 <ol>
     {% for post in posts %}
-    <li><a href="{{ url_for('show_comments', PostId=post.PostId) }}">{{ post.PostName }}</a></li>
+    <li><a href="{{ url_for('show_comments', PostId=post.id) }}">{{ post.account.username }}: {{ post.postName }} 
+    <br>
+    Created: {{ post.dateCreated }} 
+    <br>
+    Modified: {{ post.dateModified }}
+    </a></li>
+    <br>
     {% endfor %}
 </ol>
 
 <a href="{{ url_for('posts_form') }}">Make a new post</a>
+<br>
+<a href="{{ url_for('index') }}">Back to index</a>
 {% endblock %}

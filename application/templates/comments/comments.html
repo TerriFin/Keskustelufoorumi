@@ -2,22 +2,32 @@
 
 {% block body %}
 <h1>{{ PostName }}</h1>
+<br>
+{{ error }}
+<br>
 
 <h2>Comments:</h2>
 <ol>
 {% for comment in Comments %}
     <li>
-        {{comment.CommentContent}}
+        {{ comment.account.username }}:  {{  comment.commentContent  }}
+        <br>
+        Created: {{ comment.dateCreated }}
+        <br>
+        Modified: {{ comment.dateModified }}
+        <br>
         <form method="POST" action="{{ url_for('delete_comment', PostId=PostID) }}">
-            <input type="hidden" value="{{ comment.CommentId }}" name="comment_to_delete"/>
+            <input type="hidden" value="{{ comment.id }}" name="comment_to_delete"/>
             <input type="submit" value="Delet this">
         </form>
 
         <form method="POST" action="{{ url_for('show_comment_update_form', PostId=PostID) }}">
-            <input type="hidden" value="{{ comment.CommentId }}" name="comment_to_update"/>
+            <input type="hidden" value="{{ comment.id }}" name="comment_to_update"/>
             <input type="submit" value="Modify">
         </form>
     </li>
+
+    <br>
 {% endfor %}
 </ol>
 
