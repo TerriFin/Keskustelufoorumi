@@ -16,11 +16,7 @@ class Post(Base):
 
     @staticmethod
     def get_the_post_with_most_comments():
-        stmt = text("SELECT Post.postName, Post.accountId, COUNT(Comment.id) FROM Post"
-            " LEFT JOIN Comment ON Comment.postId = Post.id"
-            " GROUP BY Post.postName"
-            " ORDER BY Count(Comment.id) DESC"
-            " LIMIT 1")
+        stmt = text('SELECT Post."postName", Post."accountId", COUNT(Comment.id) FROM Post LEFT JOIN Comment ON Post.id = comment."postId" GROUP BY Post."postName", Post."accountId" ORDER BY Count(Comment.id) DESC LIMIT 1;')
 
         res = db.engine.execute(stmt)
 
