@@ -22,4 +22,12 @@ class Post(Base):
             " ORDER BY Count(Comment.id) DESC"
             " LIMIT 1")
 
-        return db.engine.execute(stmt)
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            response.append(row[0])
+            response.append(row[1])
+            response.append(row[2])
+
+        return response
