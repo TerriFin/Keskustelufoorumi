@@ -3,6 +3,8 @@ from application.models import Base
 
 from sqlalchemy.sql import text
 
+import os
+
 class Post(Base):
 
     postName = db.Column(db.String(300), nullable = False)
@@ -16,7 +18,14 @@ class Post(Base):
 
     @staticmethod
     def get_the_post_with_most_comments():
-        stmt = text('SELECT Post."postName", Post."accountId", COUNT(Comment.id) FROM Post LEFT JOIN Comment ON Post.id = comment."postId" GROUP BY Post."postName", Post."accountId" ORDER BY Count(Comment.id) DESC LIMIT 1;')
+        if os.environ.get("HEROKU"):
+            stmt = text('SELECT Post."postName", Post."accountId", COUNT(Comment.id) FROM Post LEFT JOIN Comment ON Post.id = comment."postId" GROUP BY Post."postName", Post."accountId" ORDER BY Count(Comment.id) DESC LIMIT 1;')
+        else:
+            stmt = text("SELECT Post.postName, Post.accountId, COUNT(Comment.id) FROM Post"
+            " LEFT JOIN Comment ON Comment.postId = Post.id"
+            " GROUP BY Post.postName"
+            " ORDER BY Count(Comment.id) DESC"
+            " LIMIT 1")
 
         res = db.engine.execute(stmt)
 

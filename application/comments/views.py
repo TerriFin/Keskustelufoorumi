@@ -39,7 +39,7 @@ def delete_comment(PostId):
     if not current_user.id == comment.account.id:
         p = Post.query.get(PostId)
 
-        return render_template("comments/comments.html", PostName = p.postName, Comments = p.comments, PostID = p.id, form = CommentForm, error = "You are trying to remove a comment you did not make!")
+        return render_template("comments/comments.html", PostName = p.postName, Comments = p.comments, PostID = p.id, form = CommentForm(), error = "You are trying to remove a comment you did not make!")
 
     db.session().delete(comment)
     db.session().commit()
@@ -54,7 +54,7 @@ def show_comment_update_form(PostId):
     if not current_user.id == comment.account.id:
         p = Post.query.get(PostId)
 
-        return render_template("comments/comments.html", PostName = p.postName, Comments = p.comments, PostID = p.id, form = CommentForm, error = "You are trying to edit a comment you did not make!")
+        return render_template("comments/comments.html", PostName = p.postName, Comments = p.comments, PostID = p.id, form = CommentForm(), error = "You are trying to edit a comment you did not make!")
 
     form = CommentForm()
     form.comment.data = comment.commentContent
@@ -69,7 +69,7 @@ def update_comment(PostId):
     if not current_user.id == comment.account.id:
         p = Post.query.get(PostId)
 
-        return render_template("comments/comments.html", PostName = p.postName, Comments = p.comments, PostID = p.id, form = CommentForm, error = "You are trying to edit a comment you did not make!")
+        return render_template("comments/comments.html", PostName = p.postName, Comments = p.comments, PostID = p.id, form = CommentForm(), error = "You are trying to edit a comment you did not make!")
 
     
     form = CommentForm(request.form)
