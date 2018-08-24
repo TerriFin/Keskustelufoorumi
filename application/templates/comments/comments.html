@@ -10,11 +10,11 @@
 <ol>
 {% for comment in Comments %}
     <li>
-        {{ comment.account.username }}:  {{  comment.commentContent  }}
+        <mark>{{ comment.account.username }}:  {{  comment.commentContent  }}</mark>
         <br>
-        Created: {{ comment.dateCreated }}
+        <small>Created: {{ comment.dateCreated }}</small>
         <br>
-        Modified: {{ comment.dateModified }}
+        <small>Modified: {{ comment.dateModified }}</small>
         <br>
         <form method="POST" action="{{ url_for('delete_comment', PostId=PostID) }}">
             <input type="hidden" value="{{ comment.id }}" name="comment_to_delete"/>

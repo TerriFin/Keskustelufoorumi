@@ -2,22 +2,30 @@
 
 {% block body %}
 {{ error }}
-<form method="POST" action="{{ url_for('auth_handle_login') }}">
-    {{ form.username.label }}
-    <br>
-    {{ form.username }}
+<div class="text-center">
+    <h2>Please login:</h2>
 
-    <br>
-    <br>
+    <form method="POST" action="{{ url_for('auth_handle_login') }}">
+        {{ form.username.label }}
+        <br>
+        {{ form.username }}
+            
+        <br>
+        <br>
+            
+        {{ form.password.label }}
+        <br>
+        {{ form.password }}
+            
+        <br>
+                
+        <input type="submit" value="Login"/>
+    </form>
 
-    {{ form.password.label }}
-    <br>
-    {{ form.password }}
+</div>
 
+<div class="text-center">
     <br>
-    
-    <input type="submit" value="Login"/>
-</form>
-
-<a href="{{ url_for('index') }}">Return to frontpage</a>
+    <a href="{{ url_for('index') }}">Return to frontpage</a>
+</div>
 {% endblock %}

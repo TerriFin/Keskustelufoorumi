@@ -6,29 +6,37 @@
 
 {{ error }}
 
-<form method="POST", action="{{ url_for('auth_register_new_user') }}">
-    {% for error in form.username.errors %}
-    {{ error }}
-    <br>
-    {% endfor %}
-
-    {% for error in form.password.errors %}
-    {{ error }}
-    <br>
-    {% endfor %}
-
-    {{ form.username.label }}
-    {{ form.username }}
-
+<div class="text-center">
+    <h2>Register a new account:</h2>
     <br>
 
-    {{ form.password.label }}
-    {{ form.password }}
+    <form class="form-signin" method="POST", action="{{ url_for('auth_register_new_user') }}">
+        {% for error in form.username.errors %}
+        {{ error }}
+        <br>
+        {% endfor %}
+        
+        {% for error in form.password.errors %}
+        {{ error }}
+        <br>
+        {% endfor %}
+        
+        {{ form.username.label }}
+        {{ form.username }}
+        
+        <br>
+        
+        {{ form.password.label }}
+        {{ form.password }}
+        
+        <br>
+        
+        <input type="submit" value="Register"/>
+    </form>
+</div>
 
+<div class="text-center">
     <br>
-
-    <input type="submit" value="Register"/>
-</form>
-
-<a href="{{ url_for('index') }}">Back </a>
+    <a href="{{ url_for('index') }}">Back </a>
+</div>
 {% endblock %}
