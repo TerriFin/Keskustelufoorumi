@@ -1,8 +1,8 @@
-from application import app, db
+from application import app, db, login_required
 from flask import render_template, request, url_for, redirect
 from application.posts.models import Post
 from application.comments.forms import CommentForm
-from flask_login import login_required, current_user
+from flask_login import current_user
 from application.comments.models import Comment
 
 @app.route("/comments/<PostId>/", methods=["GET"])
@@ -12,7 +12,7 @@ def show_comments(PostId):
     return render_template("comments/comments.html", PostName = p.postName, Comments = p.comments, PostID = p.id, form = CommentForm())
 
 @app.route("/comments/<PostId>/", methods=["POST"])
-@login_required
+@login_required()
 def create_comment(PostId):
     form = CommentForm(request.form)
 
@@ -32,14 +32,15 @@ def create_comment(PostId):
     return redirect(url_for("show_comments", PostId=PostId))
 
 @app.route("/commentsdelete/<PostId>/", methods=["POST"])
-@login_required
+@login_required()
 def delete_comment(PostId):
     comment = Comment.query.get(request.form.get("comment_to_delete"))
 
     if not current_user.id == comment.account.id:
-        p = Post.query.get(PostId)
+        if not current_user.role == 'Admin':
+            p = Post.query.get(PostId)
 
-        return render_template("comments/comments.html", PostName = p.postName, Comments = p.comments, PostID = p.id, form = CommentForm(), error = "You are trying to remove a comment you did not make!")
+            return render_template("comments/comments.html", PostName = p.postName, Comments = p.comments, PostID = p.id, form = CommentForm(), error = "You are trying to remove a comment you did not make!")
 
     db.session().delete(comment)
     db.session().commit()
@@ -47,7 +48,7 @@ def delete_comment(PostId):
     return redirect(url_for("show_comments", PostId=PostId))
 
 @app.route("/commentsupdate/<PostId>/", methods=["POST"])
-@login_required
+@login_required()
 def show_comment_update_form(PostId):
     comment = Comment.query.get(request.form.get("comment_to_update"))
 
@@ -62,7 +63,7 @@ def show_comment_update_form(PostId):
     return render_template("comments/updateCommentForm.html", PostId=PostId, CommentId=comment.id, form=form)
 
 @app.route("/commentsupdatenow/<PostId>/", methods=["POST"])
-@login_required
+@login_required()
 def update_comment(PostId):
     comment = Comment.query.get(request.form.get("comment_to_update"))
 

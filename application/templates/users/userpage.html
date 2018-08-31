@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h1> Activity of {{ user.username }} </h1>
+
+<h2> Posts; </h2>
+<ol>
+    {% for post in user.posts %}
+    <li>
+        <a href="{{ url_for('show_comments', PostId=post.id) }}"> {{ post.postName }}</a>
+    </li>
+    {% endfor %}
+</ol>
+
+<br>
+
+<h2> Comments; </h2>
+<ol>
+    {% for comment in user.comments %}
+    <li>
+        <a href="{{ url_for('show_comments', PostId=comment.postId) }}"> {{ comment.commentContent }}</a>
+    </li>
+    {% endfor %}
+</ol>
+
+<a href="{{ url_for('users_index') }}">Back to listing of users</a>
+{% endblock %}

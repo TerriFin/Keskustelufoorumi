@@ -32,6 +32,34 @@ login_manager.init_app(app)
 login_manager.login_view = "auth_show_login"
 login_manager.login_message = "STOP! YOU VIOLATED THE LAW! (please login to do this)"
 
+
+# Set up wrapper for roles
+from functools import wraps
+from flask_login import current_user
+
+def login_required(role="ANY"):
+    def wrapper(fn):
+        @wraps(fn)
+        def decorated_view(*args, **kwargs):
+            if not current_user.is_authenticated:
+                return login_manager.unauthorized()
+
+            unauthorized = False
+
+            if role != "ANY":
+                unauthorized = True
+
+                if current_user.role == 'Admin' or current_user.role == role:
+                    unauthorized = False
+            
+            if unauthorized:
+                return login_manager.unauthorized()
+
+            return fn(*args, **kwargs)
+        return decorated_view
+    return wrapper
+
+# Logging in part 2
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
@@ -41,3 +69,4 @@ from application import views
 from application.posts import views
 from application.comments import views
 from application.auth import views
+from application.users import views
