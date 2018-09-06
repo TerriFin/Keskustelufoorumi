@@ -1,9 +1,7 @@
-Haluan foorumin jossa ainoastaan käyttäjät pystyvät tekemään kommentteja ja postauksia.
+Haluan foorumin jossa käyttäjät pystyvät tekemään kommentteja ja postauksia.
 
-Kommentteja ja postauksia pitäisi pystymään muokkaamaan vain alkuperäisen käyttäjän toimesta.
+Kommentteja ja postauksia pitäisi pystymään muokkaamaan ja poistamaan vain käyttäjän tai adminin toimesta.
 
-Käyttäjien pitäisi pystyä jaottautumaan ryhmiin joihin vain ryhmän jäsenet voivat kutsua muita kommenttien kautta.
+Sivulla pitäisi olla hall of fame josta löytyy mielenkiintoisimmat postaukset.
 
-Kaikki tietokannoissa olevat tiedot pitäisi pyyhkiä pois tasa ajoin (kiitos heroku :-D)
-
-
+Käyttäjät pitäisi pystyä listaamaan yhteen sivuun josta pystyisi jatkamaan käyttäjän omaan profiiliin.
