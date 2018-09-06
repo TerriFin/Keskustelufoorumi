@@ -1,7 +1,7 @@
 # Keskustelufoorumi
 
 Tässä projektissa teen yksinkertaisen foorumin johon käyttäjät pystyvät luoda ja jatkaa viestiketjuja.
-Lopullisessa versiossa ainoastaan käyttäjät jotka ovat tehneet postauksen/kommentin pystyvät muokata/poistaa kyseisen julkaisun, ja lopullisessa versiossa tulee myös olemaan jonkinsorttinen "hall of fame", josta löytyvät ne käyttäjät jotka ovat tehneet parhaat postaukset.
+Lopullisessa versiossa on erikseen adminit ja käyttäjät. Käyttäjät pystyvät muokkaamaan ja poistamaan omia julkaisujaan, ja adminit pystyvät vielä poistamaan muiden tekemiä kommentteja. Sivulla on myös hall of fame, josta löytyvät mielenkiintoisimmat julkaisut.
 
 Joitakin valmiita käyttäjiä joita löytyy foorumilta;
 
@@ -10,6 +10,11 @@ password: test
 
 username: hello
 password: world
+
+username: admin
+password: admin
+
+käyttäjä admin on luonnollisesti ainoa admin joka sivulla on tällä hetkellä.
 
 **[Tietokannoista](https://github.com/TerriFin/Keskustelufoorumi/blob/master/documentation/Tietokannoista.md)**
 
